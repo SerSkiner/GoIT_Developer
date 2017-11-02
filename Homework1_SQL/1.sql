@@ -1,0 +1,44 @@
+alter table developers
+add salary double;
+
+SET SQL_SAFE_UPDATES=0;
+UPDATE developers 
+SET SALARY = 2500 
+WHERE id = 1;
+
+
+SET SQL_SAFE_UPDATES=0;
+UPDATE developers 
+SET SALARY = 7000 
+WHERE id = 2;
+
+SET SQL_SAFE_UPDATES=0;
+UPDATE developers 
+SET SALARY = 12000 
+WHERE id = 3;
+
+SET SQL_SAFE_UPDATES=0;
+UPDATE developers 
+SET SALARY = 1900 
+WHERE id = 4;
+
+SET SQL_SAFE_UPDATES=0;
+UPDATE developers 
+SET SALARY = 8200 
+WHERE id = 5;
+
+SET SQL_SAFE_UPDATES=0;
+UPDATE developers 
+SET SALARY = 3200 
+WHERE id = 6;
+
+SET SQL_SAFE_UPDATES=0;
+UPDATE developers 
+SET SALARY = 3000 
+WHERE id = 7
+
+
+
+
+
+
