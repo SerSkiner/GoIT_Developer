@@ -1,40 +1,24 @@
-CREATE TABLE developers(
-   ID   INT               NOT NULL,
-   NAME VARCHAR (100)     NOT NULL,
-   EXPERIENCE  INT        NOT NULL,
-   SKILL varchar(100)    not null,
-   SKILLSE varchar(100),
-   PRIMARY KEY (ID)
-);
+CREATE TABLE Developers
+(ID int auto_increment primary key,
+NAME varchar(50));
 
-CREATE TABLE skills(
-   ID   INT               NOT NULL,
-   NAME VARCHAR (100)     NOT NULL,
-   PRIMARY KEY (ID)
-);
+CREATE TABLE Skills
+(ID int auto_increment primary key,
+NAME varchar(50));
 
-CREATE TABLE projects   (
-   ID   INT               NOT NULL,
-   NAME VARCHAR (100)     NOT NULL,
-   PRIMARY KEY (ID)
-);
+CREATE TABLE Dev_Skills
+(Developers_ID int,Skills_ID int);
 
-CREATE TABLE companies    (
-   ID   INT               NOT NULL,
-   NAME VARCHAR (100)     NOT NULL,
-   PRIMARY KEY (ID)
-);
+alter table Dev_Skills add constraint PK_Dev_S primary key(DEVELOPERS_ID, SKILLS_ID);
 
-CREATE TABLE customers     (
-   ID   INT               NOT NULL,
-   NAME VARCHAR (100)     NOT NULL,
-   PRIMARY KEY (ID)
-);
+insert into Dev_Skills (developers_id, skills_id) values
+(1,2),
+(1,1),
+(2,3),
+(3,8),
+(4,1),
+(5,5),
+(6,5),
+(7,2);
 
-ALTER TABLE `developers`
-ADD CONSTRAINT `<SKILL>` FOREIGN KEY (`id`) REFERENCES `skills` (`id`),
-ADD CONSTRAINT `<SKILLSE>` FOREIGN KEY (`id`) REFERENCES `skills` (`id`)
-
-  
-  
 
