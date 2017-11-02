@@ -16,3 +16,24 @@ insert into Developers (NAME) values
 ('Sasha P.'),
 ('Olya S.'),
 ('Masha E.');
+
+insert into Projects (NAME) values
+('Nomerok'),
+('Dahua Pss'),
+('SekurOS'),
+('Hotels'),
+('Cazino'),
+('AB Office');
+
+insert into Companies (NAME) values
+('UAsoft'),
+('TerraSoft'),
+('Canonical'),
+('Liga');
+
+insert into Customers (NAME) values
+('Hetfild'),
+('Dikinson'),
+('Bonem'),
+('Lewis'),
+('Harris')
