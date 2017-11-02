@@ -29,3 +29,9 @@ CREATE TABLE customers     (
    PRIMARY KEY (ID)
 );
 
+ALTER TABLE developers
+ADD skill varchar(100);
+
+ALTER TABLE developers
+ADD skillSE varchar(100);
+
