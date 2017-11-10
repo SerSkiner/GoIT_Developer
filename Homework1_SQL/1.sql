@@ -1,5 +1,5 @@
 alter table developers
-add salary double;
+add salary decimal;
 
 SET SQL_SAFE_UPDATES=0;
 UPDATE developers 
