@@ -4,7 +4,7 @@ NAME varchar(50));
 
 CREATE TABLE Skills
 (ID int auto_increment primary key,
-NAME varchar(50));
+Skill varchar(50));
 
 CREATE TABLE Dev_Skills
 (Developers_ID int,Skills_ID int);
