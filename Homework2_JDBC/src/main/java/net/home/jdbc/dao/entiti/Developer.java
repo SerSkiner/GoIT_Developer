@@ -1,24 +1,27 @@
 package net.home.jdbc.dao.entiti;
 
-import java.math.BigDecimal;
-
 public class Developer {
     private Long id;
     private String firstName;
     private String lastName;
-    private BigDecimal salary;
+    private String salary;
 
-    public Developer() {
-    }
 
-    public Developer(Long id, String firstName, String lastName, BigDecimal salary) {
+    public Developer(Long id, String firstName, String lastName, String salary) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
     }
 
-    public Long getId(Long id) {
+    public Developer(String firstName, String lastName, String salary) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -58,15 +61,17 @@ public class Developer {
 
     }
 
-    public BigDecimal getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(BigDecimal salary) {
+
+
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 
-    public Developer withSalary(BigDecimal salary){
+    public Developer withSalary(String salary){
         this.salary = salary;
         return this;
     }
