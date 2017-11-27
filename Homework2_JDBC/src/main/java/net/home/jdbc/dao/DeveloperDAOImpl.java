@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class DeveloperDAOImpl implements DeveloperDAO {
 
@@ -17,7 +18,6 @@ public class DeveloperDAOImpl implements DeveloperDAO {
         String sql = "SELECT * FROM developers";
         Statement statement = Connector.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-
 
 
         while (resultSet.next()) {
@@ -36,12 +36,12 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 
         return null;
 
-            }
+    }
 
     @Override
     public void save(Developer developer) throws SQLException {
         String stringQuery = "INSERT INTO developers (FIRST_NAME,LAST_NAME,salary) " +
-                "VALUES ('"+developer.getFirstName()+"','"+developer.getLastName()+"','"+developer.getSalary()+"')";
+                "VALUES ('" + developer.getFirstName() + "','" + developer.getLastName() + "','" + developer.getSalary() + "')";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
@@ -56,8 +56,6 @@ public class DeveloperDAOImpl implements DeveloperDAO {
     }
 
 
-
-
     public void update(Developer developer) {
 
     }
@@ -68,8 +66,36 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 
 
     public static void main(String[] args) throws SQLException {
+        Scanner sc = new Scanner(System.in);
+
         DeveloperDAOImpl developerDAO = new DeveloperDAOImpl();
-        developerDAO.getAll();
-        developerDAO.save(new Developer("Maxim", "Drozd","2600"));
+
+        while (sc.hasNextLine()) {
+            String cmd = sc.nextLine();
+            String[] parts = cmd.split(" ");
+            String command = parts[0];
+
+            //create Ivan Vladimirovich Melnichuk
+            if (command.equals("create")) {
+                if (parts.length < 4) {
+                    System.out.println("Wrong format. Usage: create <first_name> <last_name>");
+                    continue;
+                }
+
+                String firstName = parts[1];
+                String lastName = parts[2];
+                String salary = parts[3];
+
+                Developer developer = new Developer();
+                developer.setFirstName(firstName);
+                developer.setLastName(lastName);
+                developer.setSalary(salary);
+                developerDAO.save(developer);
+                System.out.println("Developer greated");
+            }else if(command.equals("exit")||command.equals("quit")){
+            break;
+        }
     }
 }
+        }
+

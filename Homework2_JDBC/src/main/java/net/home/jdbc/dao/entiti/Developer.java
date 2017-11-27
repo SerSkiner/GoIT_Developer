@@ -14,7 +14,7 @@ public class Developer {
         this.salary = salary;
     }
 
-    public Developer(String firstName, String lastName, String salary) {
+    public Developer() {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
