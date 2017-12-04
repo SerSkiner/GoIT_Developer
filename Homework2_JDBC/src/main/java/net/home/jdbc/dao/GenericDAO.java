@@ -11,11 +11,11 @@ public interface GenericDAO<T, ID> {
 
      Developer getAll() throws SQLException;
 
-    void save(Developer developer) throws SQLException;
+    Developer save(Developer developer) throws SQLException;
 
     void update(T t);
 
-    void delete(T t);
+    Developer deleteDeveloper(long id);
 
     List<Developer> listDevelopers() throws SQLException;
     void addDevelopers(List<Developer> developers);

@@ -1,5 +1,6 @@
 package net.home.jdbc.dao;
 
+
 import net.home.jdbc.dao.entiti.Developer;
 
 import java.math.BigDecimal;
@@ -41,7 +42,7 @@ public class DeveloperDAOImpl implements DeveloperDAO {
     }
 
     @Override
-    public void save(Developer developer) throws SQLException {
+    public Developer save(Developer developer) throws SQLException {
         String stringQuery = "INSERT INTO developers (FIRST_NAME,LAST_NAME,salary) " +
                 "VALUES ('" + developer.getFirstName() + "','" + developer.getLastName() + "','" + developer.getSalary() + "')";
         System.out.println("\n================\n");
@@ -55,6 +56,7 @@ public class DeveloperDAOImpl implements DeveloperDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return developer;
     }
 
 
@@ -62,9 +64,22 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 
     }
 
-    public void delete(Developer developer) {
+    @Override
+    public Developer deleteDeveloper(long id) {
+        String sql = "DELETE FROM developers WHERE ID =" + id;
+        System.out.println("\n================\n");
+        System.out.println(sql);
+        try {
+            Statement statement = Connector.getConnection().createStatement();
 
+            statement.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 
     @Override
     public List<Developer> listDevelopers() throws SQLException {
@@ -97,7 +112,8 @@ public class DeveloperDAOImpl implements DeveloperDAO {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException e) {}
+                } catch (SQLException e) {
+                }
             }
         }
 
@@ -105,7 +121,7 @@ public class DeveloperDAOImpl implements DeveloperDAO {
     }
 
 
-        public void addDevelopers(List<Developer> developers) {
+    public void addDevelopers(List<Developer> developers) {
 
     }
 
@@ -121,7 +137,7 @@ public class DeveloperDAOImpl implements DeveloperDAO {
             String command = parts[0];
 
 
-            if (command.equals("create")) {
+            if (command.equals("add")) {
                 if (parts.length < 4) {
                     System.out.println("Wrong format. Usage: create <first_name> <last_name>");
                     continue;
@@ -137,21 +153,27 @@ public class DeveloperDAOImpl implements DeveloperDAO {
                 developer.setSalary(salary);
                 developerDAO.save(developer);
                 System.out.println("Developer greated");
-            } else if(command.equals("Devlist")) {
-                    List<Developer> developers = developerDAO.listDevelopers();
-                    System.out.println();
-                    System.out.println();
-                    System.out.println("ALL DEVELOPERS");
-                    System.out.println("FIRST_NAME   |   LAST_NAME   |  SALARY");
-                    for (Developer developer : developers) {
-                        System.out.println(developer.getFirstName() + "   |    " + developer.getLastName() + "  |   " + developer.getSalary() );
-                    }
-                    System.out.println();
+            } else if (command.equals("devlist")) {
+                List<Developer> developers = developerDAO.listDevelopers();
+                System.out.println();
+                System.out.println();
+                System.out.println("ALL DEVELOPERS");
+                System.out.println("FIRST_NAME   |   LAST_NAME   |  SALARY");
+                for (Developer developer : developers) {
+                    System.out.println(developer.getFirstName() + "   |    " + developer.getLastName() + "  |   " + developer.getSalary());
                 }
-            else if(command.equals("exit")||command.equals("quit")){
-            break;
+                System.out.println();
+            } else if (command.equals("exit") || command.equals("quit")) {
+                break;
+            } else if (command.equals("delete")) {
+                System.out.print("Введите ID: ");
+                long id = sc.nextLong();
+                Developer developer = developerDAO.deleteDeveloper(id);
+                System.out.println("Developer deleted");
+            } else if (command.equals("info")) {
+                Developer developer = developerDAO.getAll();
+            }
         }
     }
-}
-        }
 
+}
