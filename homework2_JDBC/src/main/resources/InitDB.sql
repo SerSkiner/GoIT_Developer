@@ -21,7 +21,7 @@ insert into Dev_Skills (developers_id, skills_id) values
 
 
 CREATE TABLE Pro_DEV
-(Project_id int, Developers_ID int);
+(Projects_id int, Developers_ID int);
 
 alter table Pro_DEV add constraint PK_PRO_D primary key(PROJECTS_ID, DEVELOPERS_ID);
 
