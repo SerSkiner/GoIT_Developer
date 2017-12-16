@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import java.util.StringJoiner;
+
 public class Prog {
 
     public static void main(String[] args) {
@@ -32,12 +34,13 @@ public class Prog {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                System.out.println();
-                System.out.println();
-                System.out.println("LIST PROJECTS");
-                System.out.println("ID   |   NAME");
+                System.out.println("\nLIST PROJECTS");
+                System.out.println("ID | NAME");
                 for (Project project : projects) {
-                    System.out.println(project.getId() + "   |    " + project.getName());
+                    StringJoiner sj = new StringJoiner(" | ");
+                      sj.add(project.getId().toString());
+                      sj.add(project.getName());
+                    System.out.println(sj);
                 }
                 System.out.println();
 
@@ -86,12 +89,13 @@ public class Prog {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                System.out.println();
-                System.out.println();
-                System.out.println("LIST SKILL");
-                System.out.println("ID   |   NAME");
+                System.out.println("\nLIST SKILL");
+                System.out.println("ID | NAME");
                 for (Skill skill : skills) {
-                    System.out.println(skill.getId() + "   |    " + skill.getName());
+                    StringJoiner sj = new StringJoiner(" | ");
+                    sj.add(skill.getId().toString());
+                    sj.add(skill.getName());
+                    System.out.println(sj);
                 }
                 System.out.println();
 
@@ -167,12 +171,14 @@ public class Prog {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                System.out.println();
-                System.out.println();
-                System.out.println("LIST DEVELOPERS");
-                System.out.println("ID   |   NAME   |     SALARY");
+                System.out.println("\nLIST DEVELOPERS");
+                System.out.println("ID | NAME | SALARY");
                 for (Developer developer : developers) {
-                    System.out.println(developer.getId() + "   |    " + developer.getName() + "  |   " + developer.getSalary());
+                    StringJoiner sj = new StringJoiner(" | ");
+                    sj.add(developer.getId().toString());
+                    sj.add(developer.getName());
+                    sj.add(developer.getSalary());
+                    System.out.println(sj);
 
                 }
                 System.out.println();
