@@ -195,11 +195,11 @@ public class Prog {
                 long id = sc.nextLong();
                 System.out.print("Введите ID скила: ");
                 long id1 = sc.nextLong();
-                Dev_Skills dev_skills = new Dev_Skills();
-                dev_skills.setDevelopers_id(id);
-                dev_skills.setSkills_id(id1);
+                DevSkills devskills = new DevSkills();
+                devskills.setDevelopers_id(id);
+                devskills.setSkills_id(id1);
                 try {
-                    genericDAO.addSkil(dev_skills);
+                    genericDAO.addSkil(devskills);
                     System.out.println("Developer updated");
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -216,11 +216,11 @@ public class Prog {
                 long id = sc.nextLong();
                 System.out.print("Введите ID разработчика: ");
                 long id1 = sc.nextLong();
-                Pro_Dev pro_dev = new Pro_Dev();
-                pro_dev.setProjects_id(id);
-                pro_dev.setDevelopers_id(id1);
+                ProDev prodev = new ProDev();
+                prodev.setProjects_id(id);
+                prodev.setDevelopers_id(id1);
                 try {
-                    genericDAO.adddev(pro_dev);
+                    genericDAO.adddev(prodev);
                     System.out.println("Project updated");
                 } catch (SQLException e) {
                     e.printStackTrace();

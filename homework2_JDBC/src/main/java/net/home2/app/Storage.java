@@ -1,11 +1,8 @@
 package net.home2.app;
 
-import net.home2.app.dao.Dev_Skills;
-import net.home2.app.dao.Developer;
-import net.home2.app.dao.Project;
+import net.home2.app.dao.*;
 import net.home2.app.model.GenericDAO;
-import net.home2.app.dao.Skill;
-import net.home2.app.dao.Pro_Dev;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -384,9 +381,9 @@ public class Storage implements GenericDAO {
         return null;
     }
 
-    public Dev_Skills addSkil(Dev_Skills dev_skills) throws SQLException {
+    public DevSkills addSkil(DevSkills devskills) throws SQLException {
         String stringQuery = "INSERT INTO Dev_skills (developers_id, skills_id) " +
-                "VALUES ('" + dev_skills.getDevelopers_id() + "','" + dev_skills.getSkills_id() + "')";
+                "VALUES ('" + devskills.getDevelopers_id() + "','" + devskills.getSkills_id() + "')";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
@@ -398,7 +395,7 @@ public class Storage implements GenericDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return dev_skills;
+        return devskills;
 
     }
 
@@ -427,9 +424,9 @@ public class Storage implements GenericDAO {
 
 
 
-    public Pro_Dev adddev(Pro_Dev pro_dev) throws SQLException {
+    public ProDev adddev(ProDev prodev) throws SQLException {
         String stringQuery = "INSERT INTO Pro_DEV (projects_id, developers_id) " +
-                "VALUES ('" + pro_dev.getProjects_id() + "','" + pro_dev.getDevelopers_id() + "')";
+                "VALUES ('" + prodev.getProjects_id() + "','" + prodev.getDevelopers_id() + "')";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
@@ -441,6 +438,6 @@ public class Storage implements GenericDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return pro_dev;
+        return prodev;
     }
 }

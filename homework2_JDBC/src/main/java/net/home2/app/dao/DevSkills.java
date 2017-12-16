@@ -1,6 +1,6 @@
 package net.home2.app.dao;
 
-public class Dev_Skills {
+public class DevSkills {
     private Long Developers_id;
 
     public Long getDevelopers_id() {

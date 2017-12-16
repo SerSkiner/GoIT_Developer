@@ -1,10 +1,6 @@
 package net.home2.app.model;
 
-import net.home2.app.dao.Dev_Skills;
-import net.home2.app.dao.Project;
-import net.home2.app.dao.Skill;
-import net.home2.app.dao.Developer;
-import net.home2.app.dao.Pro_Dev;
+import net.home2.app.dao.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -43,10 +39,10 @@ public interface GenericDAO {
 
 
  Developer getDev() throws SQLException;
- Dev_Skills addSkil(Dev_Skills dev_skills) throws SQLException;
+ DevSkills addSkil(DevSkills devskills) throws SQLException;
 
  Project getPro() throws SQLException;
- Pro_Dev adddev(Pro_Dev pro_dev) throws SQLException;
+ ProDev adddev(ProDev pro_dev) throws SQLException;
 
 
 }

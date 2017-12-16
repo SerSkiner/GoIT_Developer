@@ -1,6 +1,6 @@
 package net.home2.app.dao;
 
-public class Pro_Dev {
+public class ProDev {
     private Long Projects_id;
     private Long Developers_id;
 
