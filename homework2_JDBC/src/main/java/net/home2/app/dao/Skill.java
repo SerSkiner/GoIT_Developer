@@ -10,8 +10,6 @@ public class Skill {
     }
 
     public Skill() {
-        this.id = id;
-        this.name = name;
 
     }
 

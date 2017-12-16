@@ -26,8 +26,6 @@ public class Project {
     }
 
     public Project() {
-        this.id = id;
-        this.name = name;
 
     }
 

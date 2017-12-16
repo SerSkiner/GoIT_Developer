@@ -6,9 +6,6 @@ public class Developer {
     private String salary;
 
     public Developer() {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
     }
 
     public Developer(Long id, String name, String salary) {
