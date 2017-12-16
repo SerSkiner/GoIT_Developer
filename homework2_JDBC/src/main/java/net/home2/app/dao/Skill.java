@@ -1,36 +1,40 @@
 package net.home2.app.dao;
 
 public class Skill {
-    private Long id;
-    private String name;
+    private Long id_skill;
+    private String skill_name;
 
-    public Skill(Long id, String name){
-        this.id = id;
-        this.name = name;
-    }
 
     public Skill() {
 
     }
 
-    public Long getId() {
-        return id;
+    public Skill(Long id_skill, String skill_name) {
+        this.id_skill = id_skill;
+        this.skill_name = skill_name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId_skill() {
+        return id_skill;
     }
 
-    public String getName() {
-        return name;
+    public void setId_skill(Long id_skill) {
+        this.id_skill = id_skill;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getSkill_name() {
+        return skill_name;
+    }
+
+    public void setSkill_name(String skill_name) {
+        this.skill_name = skill_name;
     }
 
     @Override
     public String toString() {
-        return id + ", " + name;
+        return "Skill{" +
+                "id_skill=" + id_skill +
+                ", skill_name='" + skill_name + '\'' +
+                '}';
     }
 }

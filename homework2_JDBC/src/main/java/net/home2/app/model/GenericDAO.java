@@ -12,7 +12,7 @@ public interface GenericDAO {
 
    Project  updateProject(Project project);
 
-    Project deleteProject(long id);
+    Project deleteProject(long id_project);
 
     List<Project> listProject() throws SQLException;
     void addProject(List<Project> projects);
@@ -21,7 +21,7 @@ public interface GenericDAO {
 
     Skill  updateSkill(Skill skill);
 
-    Skill deleteSkill(long id);
+    Skill deleteSkill(long id_skill);
 
     List<Skill> listSkill() throws SQLException;
 
@@ -38,11 +38,9 @@ public interface GenericDAO {
     void addDeveloper(List<Developer> developers);
 
 
- Developer getDev() throws SQLException;
- DevSkills addSkil(DevSkills devskills) throws SQLException;
+ Developer addSkill(Developer developer) throws SQLException;
 
- Project getPro() throws SQLException;
- ProDev adddev(ProDev pro_dev) throws SQLException;
+ Project addDev(Project project) throws SQLException;
 
 
 }

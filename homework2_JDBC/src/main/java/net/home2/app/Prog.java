@@ -35,24 +35,25 @@ public class Prog {
                     e.printStackTrace();
                 }
                 System.out.println("\nLIST PROJECTS");
-                System.out.println("ID | NAME");
+                System.out.println("ID | NAME | DEVELOPER");
                 for (Project project : projects) {
                     StringJoiner sj = new StringJoiner(" | ");
-                      sj.add(project.getId().toString());
-                      sj.add(project.getName());
+                      sj.add(project.getId_project().toString());
+                      sj.add(project.getProject_name());
+                      sj.add(project.getDeveloper_name());
                     System.out.println(sj);
                 }
                 System.out.println();
 
 
             }
-            if (command.equals("exit") || command.equals("quit")) {
+            if (command.equals("Quit") || command.equals("quit")) {
                 break;
             } else if (command.equals("add_project")) {
                 System.out.print("Введите имя: ");
-                String name = sc.nextLine();
+                String project_name = sc.nextLine();
                 Project project = new Project();
-                project.setName(name);
+                project.setProject_name(project_name);
                 try {
                     genericDAO.save(project);
                 } catch (SQLException e) {
@@ -61,17 +62,17 @@ public class Prog {
                 System.out.println("Project created");
             } else if (command.equals("delete_project")) {
                 System.out.print("Введите ID: ");
-                long id = sc.nextLong();
-                Project project = genericDAO.deleteProject(id);
+                long id_project = sc.nextLong();
+                Project project = genericDAO.deleteProject(id_project);
                 System.out.println("Project deleted");
             } else if (command.equals("upd_project")) {
                 System.out.print("Введите имя: ");
-                String name = sc.nextLine();
+                String project_name = sc.nextLine();
                 System.out.print("Введите ID: ");
-                long id = sc.nextLong();
+                long id_project = sc.nextLong();
                 Project project = new Project();
-                project.setName(name);
-                project.setId(id);
+                project.setProject_name(project_name);
+                project.setId_project(id_project);
                 genericDAO.updateProject(project);
                 System.out.println("Project updated");
 
@@ -93,8 +94,8 @@ public class Prog {
                 System.out.println("ID | NAME");
                 for (Skill skill : skills) {
                     StringJoiner sj = new StringJoiner(" | ");
-                    sj.add(skill.getId().toString());
-                    sj.add(skill.getName());
+                    sj.add(skill.getId_skill().toString());
+                    sj.add(skill.getSkill_name());
                     System.out.println(sj);
                 }
                 System.out.println();
@@ -103,9 +104,9 @@ public class Prog {
             }
             if (command.equals("add_skill")) {
                 System.out.print("Введите имя: ");
-                String name = sc.nextLine();
+                String skill_name = sc.nextLine();
                 Skill skill = new Skill();
-                skill.setName(name);
+                skill.setSkill_name(skill_name);
                 try {
                     genericDAO.save(skill);
                 } catch (SQLException e) {
@@ -114,8 +115,8 @@ public class Prog {
                 System.out.println("Skill created");
             } else if (command.equals("skill_delete")) {
                 System.out.print("Введите ID: ");
-                long id = sc.nextLong();
-                Skill skill = genericDAO.deleteSkill(id);
+                long id_skill = sc.nextLong();
+                Skill skill = genericDAO.deleteSkill(id_skill);
                 System.out.println("Skill deleted");
 
             } else if (command.equals("upd_skill")) {
@@ -124,19 +125,19 @@ public class Prog {
                 System.out.print("Введите ID: ");
                 long id = sc.nextLong();
                 Skill skill = new Skill();
-                skill.setName(name);
-                skill.setId(id);
+                skill.setSkill_name(name);
+                skill.setId_skill(id);
                 genericDAO.updateSkill(skill);
                 System.out.println("Skill updated");
 
             }
             if (command.equals("add_dev")) {
                 System.out.print("Введите имя: ");
-                String name = sc.nextLine();
+                String developer_name = sc.nextLine();
                 System.out.print("Введите зарплату: ");
                 String salary = sc.nextLine();
                 Developer developer = new Developer();
-                developer.setName(name);
+                developer.setDeveloper_name(developer_name);
                 developer.setSalary(salary);
                 try {
                     genericDAO.save(developer);
@@ -146,15 +147,15 @@ public class Prog {
                 }
             } else if (command.equals("upd_dev")) {
                 System.out.print("Введите имя: ");
-                String name = sc.nextLine();
+                String developer_name = sc.nextLine();
                 System.out.print("Введите зарплату: ");
                 String salary = sc.nextLine();
                 System.out.print("Введите ID: ");
-                long id = sc.nextLong();
+                long id_developer = sc.nextLong();
                 Developer developer = new Developer();
-                developer.setName(name);
+                developer.setDeveloper_name(developer_name);
                 developer.setSalary(salary);
-                developer.setId(id);
+                developer.setId_developer(id_developer);
                 genericDAO.updateDeveloper(developer);
                 System.out.println("Developer updated");
 
@@ -172,11 +173,12 @@ public class Prog {
                     e.printStackTrace();
                 }
                 System.out.println("\nLIST DEVELOPERS");
-                System.out.println("ID | NAME | SALARY");
+                System.out.println("ID | NAME | SKILLS | SALARY");
                 for (Developer developer : developers) {
                     StringJoiner sj = new StringJoiner(" | ");
-                    sj.add(developer.getId().toString());
-                    sj.add(developer.getName());
+                    sj.add(developer.getId_developer().toString());
+                    sj.add(developer.getDeveloper_name());
+                    sj.add(developer.getSkill_name());
                     sj.add(developer.getSalary());
                     System.out.println(sj);
 
@@ -186,47 +188,35 @@ public class Prog {
 
             } else if (command.equals("dev_delete")) {
                 System.out.print("Введите ID: ");
-                long id = sc.nextLong();
-                Developer developer = genericDAO.deleteDeveloper(id);
+                long id_developer = sc.nextLong();
+                Developer developer = genericDAO.deleteDeveloper(id_developer);
                 System.out.println("Developer deleted");
-            } else if (command.equals("info_dev")) {
-                try {
-                    Developer developer = genericDAO.getDev();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
             }
             if (command.equals("add_skill_dev")) {
                 System.out.print("Введите ID разработчика: ");
-                long id = sc.nextLong();
+                long id_developer = sc.nextLong();
                 System.out.print("Введите ID скила: ");
-                long id1 = sc.nextLong();
-                DevSkills devskills = new DevSkills();
-                devskills.setDevelopers_id(id);
-                devskills.setSkills_id(id1);
+                long id_skill = sc.nextLong();
+                Developer developer = new Developer();
+                developer.setId_developer(id_developer);
+                developer.setId_skill(id_skill);
                 try {
-                    genericDAO.addSkil(devskills);
+                    genericDAO.addSkill(developer);
                     System.out.println("Developer updated");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }else if (command.equals("info_project")) {
-                try {
-                    Project project = genericDAO.getPro();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
             if (command.equals("add_pro_dev")) {
                 System.out.print("Введите ID проекта: ");
-                long id = sc.nextLong();
+                long id_project = sc.nextLong();
                 System.out.print("Введите ID разработчика: ");
-                long id1 = sc.nextLong();
-                ProDev prodev = new ProDev();
-                prodev.setProjects_id(id);
-                prodev.setDevelopers_id(id1);
+                long id_developer = sc.nextLong();
+                Project project = new Project();
+                project.setId_project(id_project);
+                project.setId_developer(id_developer);
                 try {
-                    genericDAO.adddev(prodev);
+                    genericDAO.addDev(project);
                     System.out.println("Project updated");
                 } catch (SQLException e) {
                     e.printStackTrace();

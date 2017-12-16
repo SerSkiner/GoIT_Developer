@@ -15,7 +15,7 @@ public class Storage implements GenericDAO {
     private Connection connection;
     private Statement statement;
     public static final String DRIVER = "com.mysql.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost/homework_2";
+    public static final String URL = "jdbc:mysql://localhost/test1";
     public static final String USER = "root";
     public static final String PASS = "root";
 
@@ -70,8 +70,8 @@ public class Storage implements GenericDAO {
     }
 
     public Project save(Project project) throws SQLException {
-        String stringQuery = "INSERT INTO projects (NAME) " +
-                "VALUES ('" + project.getName() + "')";
+        String stringQuery = "INSERT INTO projects (project_name) " +
+                "VALUES ('" + project.getProject_name() + "')";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
@@ -87,7 +87,7 @@ public class Storage implements GenericDAO {
     }
 
     public Project updateProject(Project project) {
-        String stringQuery = "UPDATE projects SET NAME=? WHERE ID=?";
+        String stringQuery = "UPDATE projects SET project_name=? WHERE id_project=?";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
@@ -97,12 +97,12 @@ public class Storage implements GenericDAO {
             e.printStackTrace();
         }
         try {
-            updateSt.setString(1, project.getName());
+            updateSt.setString(1, project.getProject_name());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try {
-            updateSt.setLong(2, project.getId());
+            updateSt.setLong(2, project.getId_project());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -114,8 +114,8 @@ public class Storage implements GenericDAO {
         return project;
     }
 
-    public Project deleteProject(long id) {
-        String sql = "DELETE FROM projects WHERE ID =" + id;
+    public Project deleteProject(long id_project) {
+        String sql = "DELETE FROM projects WHERE id_project =" + id_project;
         System.out.println("\n================\n");
         System.out.println(sql);
         try {
@@ -130,7 +130,8 @@ public class Storage implements GenericDAO {
     }
 
     public List<Project> listProject() throws SQLException {
-        String selectAllQuery = "SELECT id, name FROM projects";
+        String selectAllQuery = "SELECT * FROM projects\n" +
+                "JOIN developers USING(id_developer)";
         Statement statement = getConnection().createStatement();
 
         statement.executeQuery(selectAllQuery);
@@ -142,12 +143,14 @@ public class Storage implements GenericDAO {
             rs = statement.executeQuery(selectAllQuery);
 
             while (rs.next()) {
-                Long id = rs.getLong("id");
-                String name = rs.getString("name");
+                Long id_project = rs.getLong("id_project");
+                String project_name = rs.getString("project_name");
+                String developer_name = rs.getString("developer_name");
 
                 Project project = new Project();
-                project.setId(id);
-                project.setName(name);
+                project.setId_project(id_project);
+                project.setProject_name(project_name);
+                project.setDeveloper_name(developer_name);
 
                 projects.add(project);
             }
@@ -170,8 +173,8 @@ public class Storage implements GenericDAO {
     }
 
     public Skill save(Skill skill) throws SQLException {
-        String stringQuery = "INSERT INTO skills (NAME) " +
-                "VALUES ('" + skill.getName() + "')";
+        String stringQuery = "INSERT INTO skills (skill_name) " +
+                "VALUES ('" + skill.getSkill_name() + "')";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
@@ -187,7 +190,7 @@ public class Storage implements GenericDAO {
     }
 
     public Skill updateSkill(Skill skill) {
-        String stringQuery = "UPDATE skills SET NAME=? WHERE ID=?";
+        String stringQuery = "UPDATE skills SET skill_name=? WHERE id_skill=?";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
@@ -197,12 +200,12 @@ public class Storage implements GenericDAO {
             e.printStackTrace();
         }
         try {
-            updateSt.setString(1, skill.getName());
+            updateSt.setString(1, skill.getSkill_name());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try {
-            updateSt.setLong(2, skill.getId());
+            updateSt.setLong(2, skill.getId_skill());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -214,8 +217,8 @@ public class Storage implements GenericDAO {
         return skill;
     }
 
-    public Skill deleteSkill(long id) {
-        String sql = "DELETE FROM skills WHERE ID =" + id;
+    public Skill deleteSkill(long id_skill) {
+        String sql = "DELETE FROM skills WHERE id_skill =" + id_skill;
         System.out.println("\n================\n");
         System.out.println(sql);
         try {
@@ -230,7 +233,7 @@ public class Storage implements GenericDAO {
     }
 
     public List<Skill> listSkill() throws SQLException {
-        String selectAllQuery = "SELECT id, name FROM skills";
+        String selectAllQuery = "SELECT id_skill, skill_name FROM skills";
         Statement statement = getConnection().createStatement();
 
         statement.executeQuery(selectAllQuery);
@@ -242,12 +245,12 @@ public class Storage implements GenericDAO {
             rs = statement.executeQuery(selectAllQuery);
 
             while (rs.next()) {
-                Long id = rs.getLong("id");
-                String name = rs.getString("name");
+                Long id_skill = rs.getLong("id_skill");
+                String skill_name = rs.getString("skill_name");
 
                 Skill skill = new Skill();
-                skill.setId(id);
-                skill.setName(name);
+                skill.setId_skill(id_skill);
+                skill.setSkill_name(skill_name);
 
                 skills.add(skill);
             }
@@ -270,8 +273,8 @@ public class Storage implements GenericDAO {
     }
 
     public Developer save(Developer developer) throws SQLException {
-        String stringQuery = "INSERT INTO developers (name, salary) " +
-                "VALUES ('" + developer.getName() + "','" + developer.getSalary() + "')";
+        String stringQuery = "INSERT INTO developers (developer_name,  salary) " +
+                "VALUES ('" + developer.getDeveloper_name() + "','" + developer.getSalary() + "')";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
@@ -288,9 +291,9 @@ public class Storage implements GenericDAO {
 
     public void updateDeveloper(Developer developer) {
         String sql = "UPDATE DEVELOPERS SET " +
-                "NAME='" + developer.getName() + "', " +
+                "developer_name='" + developer.getDeveloper_name() + "', " +
                 "SALARY='" + developer.getSalary() + "'" +
-                "WHERE  ID=" + developer.getId();
+                "WHERE  id_developer=" + developer.getId_developer();
         System.out.println("\n================\n");
         System.out.println(sql);
         try {
@@ -300,8 +303,8 @@ public class Storage implements GenericDAO {
         }
     }
 
-    public Developer deleteDeveloper(long id) {
-        String sql = "DELETE FROM developers WHERE ID =" + id;
+    public Developer deleteDeveloper(long id_developer) {
+        String sql = "DELETE FROM developers WHERE id_developer =" + id_developer;
         System.out.println("\n================\n");
         System.out.println(sql);
         try {
@@ -317,7 +320,8 @@ public class Storage implements GenericDAO {
     }
 
     public List<Developer> listDeveloper() throws SQLException {
-        String selectAllQuery = "SELECT id, name, salary FROM developers";
+        String selectAllQuery = "SELECT * FROM developers\n" +
+                "JOIN skills USING(id_skill)";
         Statement statement = getConnection().createStatement();
 
         statement.executeQuery(selectAllQuery);
@@ -329,14 +333,17 @@ public class Storage implements GenericDAO {
             rs = statement.executeQuery(selectAllQuery);
 
             while (rs.next()) {
-                Long id = rs.getLong("id");
-                String name = rs.getString("name");
+                Long id_developer = rs.getLong("id_developer");
+                String developer_name = rs.getString("developer_name");
                 String salary = rs.getString("salary");
+                String skill_name = rs.getString("skill_name");
+
 
                 Developer developer = new Developer();
-                developer.setId(id);
-                developer.setName(name);
+                developer.setId_developer(id_developer);
+                developer.setDeveloper_name(developer_name);
                 developer.setSalary(salary);
+                developer.setSkill_name(skill_name);
 
                 developers.add(developer);
             }
@@ -358,86 +365,41 @@ public class Storage implements GenericDAO {
 
     }
 
-    public Developer getDev() throws SQLException {
-        String sql = "select developers.name, skills.id\n" +
-                "from developers, skills, Dev_Skills\n" +
-                "where (developers.ID = Dev_Skills.DEVELOPERS_ID and skills.ID = Dev_Skills.SKILLS_ID)";
-        Statement statement = getConnection().createStatement();
-        ResultSet resultSet = statement.executeQuery(sql);
+
+    public Developer addSkill(Developer developer) throws SQLException {
+        String stringQuery = "UPDATE developers SET id_skill=? WHERE id_developer=?";
+        System.out.println("\n================\n");
+        System.out.println(stringQuery);
+
+        updateSt = connection.prepareStatement(stringQuery);
+
+        updateSt.setLong(1, developer.getId_skill());
+
+        updateSt.setLong(2, developer.getId_developer());
+
+        updateSt.executeUpdate();
 
 
-        while (resultSet.next()) {
-            String name = resultSet.getString("name");
-            long skillID = resultSet.getLong("Id");
-
-
-            System.out.println("\n================\n");
-            System.out.println("NameDeveloper: " + name);
-            System.out.println("IdSkill: " + skillID);
-
-
-        }
-
-        return null;
+        return developer;
     }
 
-    public DevSkills addSkil(DevSkills devskills) throws SQLException {
-        String stringQuery = "INSERT INTO Dev_skills (developers_id, skills_id) " +
-                "VALUES ('" + devskills.getDevelopers_id() + "','" + devskills.getSkills_id() + "')";
+
+    public Project addDev(Project project) throws SQLException {
+        String stringQuery = "UPDATE projects SET id_developer=? WHERE id_project=?";
         System.out.println("\n================\n");
         System.out.println(stringQuery);
 
 
-        try {
-            Statement statement = getConnection().createStatement();
+        updateSt = connection.prepareStatement(stringQuery);
 
-            statement.executeUpdate(stringQuery);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return devskills;
+        updateSt.setLong(1, project.getId_developer());
 
+        updateSt.setLong(2, project.getId_project());
+
+        updateSt.executeUpdate();
+
+
+        return project;
     }
 
-    public Project getPro() throws SQLException {
-        String sql = "select projects.name, developers.ID\n" +
-                "from projects, developers, Pro_DEV\n" +
-                "where (PROJECTS.ID = Pro_DEV.PROJECTS_ID and developers.id = Pro_DEV.DEVELOPERS_ID)";
-        Statement statement = getConnection().createStatement();
-        ResultSet resultSet = statement.executeQuery(sql);
-
-
-        while (resultSet.next()) {
-            String name = resultSet.getString("name");
-            long DeveloperID = resultSet.getLong("Id");
-
-
-            System.out.println("\n================\n");
-            System.out.println("NameProject: " + name);
-            System.out.println("IdDeveloper: " + DeveloperID);
-
-
-        }
-
-        return null;
-    }
-
-
-
-    public ProDev adddev(ProDev prodev) throws SQLException {
-        String stringQuery = "INSERT INTO Pro_DEV (projects_id, developers_id) " +
-                "VALUES ('" + prodev.getProjects_id() + "','" + prodev.getDevelopers_id() + "')";
-        System.out.println("\n================\n");
-        System.out.println(stringQuery);
-
-
-        try {
-            Statement statement = getConnection().createStatement();
-
-            statement.executeUpdate(stringQuery);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return prodev;
-    }
 }
