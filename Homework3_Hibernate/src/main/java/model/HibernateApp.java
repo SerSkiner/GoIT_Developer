@@ -16,6 +16,11 @@ public class HibernateApp {
     public static void AddTask() {
         Scanner sc = new Scanner(System.in);
         out.println("Skills selected");
+        System.out.println("Input action number: \n " +
+                "1. Add new Skill \n " +
+                "2. List all skills \n " +
+                "3 Delete skill \n "  +
+                "0. Go to the MainMenu");
 
         SkillDAO skillDAO = new Storage();
 
@@ -48,8 +53,10 @@ public class HibernateApp {
 
             }
 
-            if (command.equals("10")) {
-                System.out.println("Select new task");
+            if (command.equals("0")) {
+                System.out.println("Choose your table: \n " +
+                        "1. Skill \n " +
+                        "10. Exit");
                 break;
             }
 

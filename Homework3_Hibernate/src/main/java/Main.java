@@ -9,8 +9,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         out.println("Welcome to Hibernate App.For Avalible command see help");
+        System.out.println("Choose your table: \n " +
+                "1. Skill \n " +
+                "10. Exit");
 
-        HibernateApp hibernateApp = new HibernateApp();
+        //HibernateApp hibernateApp = new HibernateApp();
 
 
         while (sc.hasNextLine()) {
