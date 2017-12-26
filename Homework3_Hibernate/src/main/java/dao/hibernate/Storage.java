@@ -23,7 +23,15 @@ public class Storage implements SkillDAO {
 
     public List<Skill> getAllSkill() {
 
-        return null;
+        Session session = this.sessionFactory.openSession();
+        Transaction transaction = null;
+
+        transaction = session.beginTransaction();
+        List skills = session.createQuery("FROM Skills").list();
+
+        transaction.commit();
+        session.close();
+        return skills;
     }
 
 
@@ -48,10 +56,14 @@ public class Storage implements SkillDAO {
 
     }
 
+
+
     public List<Skill> getAll() {
         Session session = this.sessionFactory.openSession();
-        Query query = session.createQuery("SELECT s.skill_name FROM Skill s");
+        Query query = session.createQuery(" FROM Skill");
         List<Skill> result = query.list();
         session.close();
-        return result;    }
+        return result;
+    }
 }
+

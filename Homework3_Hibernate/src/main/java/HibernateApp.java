@@ -4,6 +4,7 @@ import dao.SkillDAO;
 import dao.hibernate.Storage;
 import model.Skill;
 
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -34,7 +35,12 @@ public class HibernateApp {
             }
 
             if (command.equals("2")) {
-                out.println(skillDAO.getAll());
+                List<Skill> skills = null;
+                skills = skillDAO.getAll();
+
+                for (Object skill : skills){
+                    System.out.println(skill);
+                }
                 out.println("===================================");
 
             }

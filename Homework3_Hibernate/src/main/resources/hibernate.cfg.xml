@@ -11,7 +11,9 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
 
-        <!--<mapping resource="Developer.hbm.xml"/>-->
+
+        <!-- List of XML mapping files -->
         <mapping class="model.Skill"/>
+
     </session-factory>
 </hibernate-configuration>

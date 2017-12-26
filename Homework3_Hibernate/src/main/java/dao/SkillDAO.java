@@ -12,4 +12,7 @@ public interface SkillDAO extends GenericDAO<Skill, Long> {
     void save(Skill skill);
 
 
+
+
+
 }
