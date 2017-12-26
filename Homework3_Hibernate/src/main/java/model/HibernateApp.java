@@ -1,3 +1,4 @@
+package model;
 
 import dao.GenericDAO;
 import dao.SkillDAO;
@@ -10,9 +11,11 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class HibernateApp {
-    public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    public static void AddTask() {
         Scanner sc = new Scanner(System.in);
-        out.println("Welcome to Hibernate App.For Avalible command see help");
+        out.println("Skills selected");
 
         SkillDAO skillDAO = new Storage();
 
@@ -46,7 +49,8 @@ public class HibernateApp {
             }
 
             if (command.equals("10")) {
-                System.exit(0);
+                System.out.println("Select new task");
+                break;
             }
 
 
