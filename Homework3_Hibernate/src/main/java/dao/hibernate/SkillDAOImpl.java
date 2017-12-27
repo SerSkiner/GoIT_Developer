@@ -1,7 +1,8 @@
 package dao.hibernate;
 
 import dao.SkillDAO;
-import model.Skill;
+import model.Developer;
+import model.skill.Skill;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.SessionFactory;
@@ -12,11 +13,11 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 
-public class Storage implements SkillDAO {
+public class SkillDAOImpl implements SkillDAO {
 
     SessionFactory sessionFactory;
 
-    public Storage() {
+    public SkillDAOImpl() {
         sessionFactory = new Configuration().configure().buildSessionFactory();
     }
 
@@ -46,13 +47,23 @@ public class Storage implements SkillDAO {
 
     }
 
+
+
+
     public Skill getById(Long id) {
         Session session = this.sessionFactory.openSession();
         Skill skill = session.get(Skill.class, id);
         session.close();
         return skill;    }
 
-    public void remove(Long aLong) {
+    public void remove(Long id) {
+        Session session = this.sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Skill skill = session.get(Skill.class, id);
+        session.delete(skill);
+        transaction.commit();
+        session.close();
 
     }
 

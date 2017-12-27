@@ -1,4 +1,4 @@
-package model;
+package model.skill;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,8 +1,8 @@
 package dao.hibernate;
 
+import com.sun.xml.bind.v2.model.core.ID;
 import dao.DeveloperDAO;
 import model.Developer;
-import model.Skill;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.SessionFactory;
@@ -30,15 +30,37 @@ public class DeveloperDAOimpl implements DeveloperDAO {
         return result;
     }
 
+
+
     public void save(Developer developer) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(developer);
+        transaction.commit();
+        session.close();
 
     }
 
-    public Developer getById(Long aLong) {
-        return null;
-    }
 
-    public void remove(Long aLong) {
+
+
+
+
+
+    public Developer getById(Long id) {
+        Session session = this.sessionFactory.openSession();
+        Developer developer = session.get(Developer.class, id);
+        session.close();
+        return developer;    }
+
+    public void remove(Long id) {
+        Session session = this.sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Developer developer = session.get(Developer.class, id);
+        session.delete(developer);
+        transaction.commit();
+        session.close();
 
     }
 }

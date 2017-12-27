@@ -1,5 +1,6 @@
-import model.HibernateApp;
+
 import model.DevelperApp;
+import model.skill.SkillApp;
 
 import java.util.Scanner;
 import static java.lang.System.out;
@@ -25,7 +26,7 @@ public class Main {
 
 
             if (command.equals("1")) {
-                HibernateApp.AddTask();
+                SkillApp.AddTask();
             }
 
             if (command.equals("2")) {
