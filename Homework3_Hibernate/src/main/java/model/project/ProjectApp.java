@@ -30,8 +30,11 @@ public class ProjectApp {
             if (command.equals("1")) {
                 out.print("Введите имя: ");
                 String project_name = sc.nextLine();
+                System.out.print("Введите ID разработчика: ");
+                Long developer_id = sc.nextLong();
                 Project project = new Project();
                 project.setProject_name(project_name);
+                project.setDeveloper_id(developer_id);
                 projectDAO.save(project);
                 out.println("Project Added");
                 out.println("===================================");
@@ -66,6 +69,7 @@ public class ProjectApp {
                 System.out.println("Choose your table: \n " +
                         "1. Skill \n " +
                         "2. Developer \n " +
+                        "3. Project \n " +
                         "10. Exit");
                 break;
             }

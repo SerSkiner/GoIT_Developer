@@ -1,5 +1,7 @@
 package model.project;
 
+import model.Developer;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,10 @@ public class Project {
     @Column(name = "developer_id")
     private Long developer_id;
 
+    @OneToOne
+    @JoinColumn(name = "developer_id", updatable = false, insertable = false, referencedColumnName = "id")
+    private Developer developer;
+
    // @Column(name = "developer_name")
     //private String developer_name;
 
@@ -28,6 +34,14 @@ public class Project {
         this.id = id;
         this.project_name = project_name;
         this.developer_id = developer_id;
+    }
+
+    public Developer getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(Developer developer) {
+        this.developer = developer;
     }
 
     public Long getId() {
@@ -56,11 +70,6 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" +
-                "id=" + id +
-                ", project_name='" + project_name + '\'' +
-                ", developer_id=" + developer_id +
-                //", developer_name='" + developer_name + '\'' +
-                '}';
+        return id + ", " + project_name + ", " + developer;
     }
 }

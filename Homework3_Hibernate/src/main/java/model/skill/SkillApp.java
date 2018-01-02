@@ -67,6 +67,7 @@ public class SkillApp {
                 System.out.println("Choose your table: \n " +
                         "1. Skill \n " +
                         "2. Developer \n " +
+                        "3. Project \n " +
                         "10. Exit");
                 break;
             }

@@ -35,9 +35,12 @@ public class DevelperApp {
                 String developer_name = sc.nextLine();
                 System.out.print("Введите зарплату: ");
                 String salary = sc.nextLine();
+                System.out.print("Введите ID скила: ");
+                Long skill_id = sc.nextLong();
                 Developer developer = new Developer();
                 developer.setDeveloper_name(developer_name);
                 developer.setSalary(salary);
+                developer.setSkill_id(skill_id);
                 developerDAO.save(developer);
                 out.println("Developer Added");
                 out.println("===================================");
@@ -73,6 +76,7 @@ public class DevelperApp {
                 System.out.println("Choose your table: \n " +
                         "1. Skill \n " +
                         "2. Developer \n " +
+                        "3. Project \n " +
                         "10. Exit");
                 break;
             }

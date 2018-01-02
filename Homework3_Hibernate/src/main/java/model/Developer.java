@@ -1,5 +1,6 @@
 package model;
 
+import model.project.Project;
 import model.skill.Skill;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 public class Developer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "developer_name")
@@ -22,7 +24,8 @@ public class Developer {
     private String salary;
 
 
-
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "developer")
+    private Project project;
 
     public Developer() {
 
@@ -36,6 +39,13 @@ public class Developer {
     }
 
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     public Long getId() {
         return id;
