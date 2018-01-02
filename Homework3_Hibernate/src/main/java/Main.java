@@ -1,5 +1,6 @@
 
 import model.DevelperApp;
+import model.project.ProjectApp;
 import model.skill.SkillApp;
 
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class Main {
         System.out.println("Choose your table: \n " +
                 "1. Skill \n " +
                 "2. Developer \n " +
+                "3. Project \n " +
                 "10. Exit");
 
         //HibernateApp hibernateApp = new HibernateApp();
@@ -31,6 +33,10 @@ public class Main {
 
             if (command.equals("2")) {
                 DevelperApp.AddTask();
+            }
+
+            if (command.equals("3")) {
+                ProjectApp.AddTask();
             }
 
             if (command.equals("10")) {

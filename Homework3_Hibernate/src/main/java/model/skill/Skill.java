@@ -1,5 +1,7 @@
 package model.skill;
 
+import model.Developer;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,6 +25,8 @@ public class Skill {
         this.id = id;
         this.skill_name = skill_name;
     }
+
+
 
     public Long getId() {
         return id;

@@ -32,6 +32,7 @@ public class DeveloperDAOimpl implements DeveloperDAO {
 
 
 
+
     public void save(Developer developer) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -51,7 +52,8 @@ public class DeveloperDAOimpl implements DeveloperDAO {
         Session session = this.sessionFactory.openSession();
         Developer developer = session.get(Developer.class, id);
         session.close();
-        return developer;    }
+        return developer;
+    }
 
     public void remove(Long id) {
         Session session = this.sessionFactory.openSession();

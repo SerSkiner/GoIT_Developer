@@ -14,7 +14,8 @@
 
         <!-- List of XML mapping files -->
         <mapping class="model.Developer"/>
-        <mapping class="model.Skill"/>
+        <mapping class="model.skill.Skill"/>
+        <mapping class="model.project.Project"/>
 
     </session-factory>
 </hibernate-configuration>

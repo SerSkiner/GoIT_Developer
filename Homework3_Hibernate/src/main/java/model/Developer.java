@@ -1,5 +1,7 @@
 package model;
 
+import model.skill.Skill;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,9 @@ public class Developer {
     @Column(name = "salary")
     private String salary;
 
+
+
+
     public Developer() {
 
     }
@@ -29,6 +34,8 @@ public class Developer {
         this.skill_id = skill_id;
         this.salary = salary;
     }
+
+
 
     public Long getId() {
         return id;
