@@ -1,0 +1,18 @@
+CREATE TABLE manufacturer (
+  ID INT AUTO_INCREMENT NOT NULL,
+  NAME VARCHAR(255) NOT NULL,
+  PRIMARY KEY (ID));
+
+CREATE TABLE product (
+  ID INT AUTO_INCREMENT NOT NULL,
+  NAME VARCHAR(255) NOT NULL,
+  PRICE INT NOT NULL,
+  MANUFACTURER_ID INT NOT NULL,
+  PRIMARY KEY (ID));
+
+insert into manufacturer (name) values
+  ('WD');
+
+
+insert into product (name, PRICE, MANUFACTURER_ID) values
+  ('500GB', 2000, 1)
