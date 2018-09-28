@@ -18,7 +18,7 @@ public class Product {
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID", referencedColumnName = "ID")
     private Manufacturer manufacturer;
 
@@ -65,7 +65,7 @@ public class Product {
                 "ID=" + ID +
                 ", NAME='" + NAME + '\'' +
                 ", PRICE='" + PRICE + '\'' +
-                ", manufacturer=" + manufacturer +
+                ", manufacturer='" + manufacturer +
                 '}';
     }
 }

@@ -14,7 +14,7 @@ public class Manufacturer {
     @Column(name = "NAME")
     private String NAME;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "manufacturer")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "manufacturer")
     private List<Product> products;
 
     public Manufacturer() {
